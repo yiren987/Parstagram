@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivPostImage;
     private Button btnSubmit;
     private Button btnLogout;
+    private Button btnFeed;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
@@ -46,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         etDescription= findViewById(R.id.etDescription);
-        btnTakePicture= findViewById(R.id.btnTakePicture);
         ivPostImage= findViewById(R.id.ivPostImage);
-        btnSubmit= findViewById(R.id.btnSubmit);
-        btnLogout= findViewById(R.id.btnLogout);
+        btnTakePicture= findViewById(R.id.btnTakePicture);
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //        queryPosts();//<<----testing if we get data
+        btnSubmit= findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,12 +73,24 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description,currentUser, photoFile);
             }
         });
+
+        btnLogout= findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goLoginActivity();
             }
         });
+        btnFeed= findViewById(R.id.btnFeed);
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { goFeedActivity();}
+        });
+    }
+
+    private void goFeedActivity() {
+        Intent i= new Intent(this, Feed.class);
+        startActivity(i);
     }
 
     private void goLoginActivity() {
